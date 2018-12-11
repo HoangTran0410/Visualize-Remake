@@ -2,3 +2,23 @@
 	margin: 0;
 	padding: 0;
 }
+
+.SCuser {
+	max-width: 150px;
+}
+
+.SCuser .avatar img {
+	border-radius: 50%;
+	border: 1px solid #ccc;
+	width: 120px;
+	height: 120px;
+}
+
+.SCuser .info > div {
+	float: left;
+	width: 49%;
+}
+
+.SCuser .info .trackCount .fa-align-center {
+	transform: rotateZ(-90deg);
+}
