@@ -12,6 +12,12 @@ class MyAudio {
         this.audio.pause();
     }
 
+    playPause() {
+        if (this.paused() && this.duration() > 0)
+            this.play();
+        else this.pause();  
+    }
+
     jump(s) {
         if (!this.paused()) {
             var c = this.currentTime();
@@ -28,8 +34,8 @@ class MyAudio {
         return this.audio.elt.currentTime;
     }
 
-    duration() {
-        return this.audio.elt.duration;
+    duration(minute) {
+        return (minute?prettyTime(this.audio.elt.duration):this.audio.elt.duration);
     }
 
     isEnded() {
@@ -53,11 +59,27 @@ class MyAudio {
         this.audio.elt.loop = lp;
     }
 
-    autoplay(auto) {
+    autoPlay(auto) {
         this.audio.autoplay(auto);
     }
 
-    onended(func) {
+    onEnded(func) {
         this.audio.onended(func);
     }
+}
+
+function prettyTime(s) {
+    s = s || 0;
+
+    var seconds = (s % 60) | 0;
+    var minutes = (s / 60 % 60) | 0;
+    var hours = (s / 3600) | 0;
+
+    if (hours) return hours + ':' + ('0' + minutes).substr(-2) + ':' + ('0' + seconds).substr(-2);
+    else return minutes + ':' + ('0' + seconds).substr(-2);
+}
+
+function prettyTime_Millis(millis) {
+    var seconds = floor(millis / 1000);
+    return prettyTime(seconds);
 }

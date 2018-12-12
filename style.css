@@ -1,24 +1,97 @@
 * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
+    font-family: "Interstate", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
 }
 
-.SCuser {
-	max-width: 150px;
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }
 
-.SCuser .avatar img {
-	border-radius: 50%;
-	border: 1px solid #ccc;
-	width: 120px;
-	height: 120px;
+/* =============== Soundcloud User ================= */
+.SCcard-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-.SCuser .info > div {
-	float: left;
-	width: 49%;
+.SCcard {
+	position: relative;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px 10px;
+    padding: 20px 5px;
+    text-align: center;
+    width: 11em;
+    min-width: 11em;
 }
 
-.SCuser .info .trackCount .fa-align-center {
-	transform: rotateZ(-90deg);
+.SCcard .SCtype {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	color: #777;
+	font-size: 1.5em;
 }
+
+.SCcard:hover .SCtype {
+	color: #f46134;
+	transition-duration: .2s;
+}
+
+.SCcard .avatar a {
+    /*display: block;*/
+    border-radius: 50%;
+    border: 1px solid transparent;
+    transition-duration: .2s;
+}
+
+.SCcard .avatar a:hover {
+    border: 3px solid #aaa;
+}
+
+.SCcard .avatar a:hover img {
+    border-radius: 50%;
+    transform: scale(1.1);
+}
+
+.SCcard .avatar a img {
+    border-radius: 1em;
+    border: 2px solid #ccc;
+    width: 90px;
+    height: 90px;
+    transition-duration: 0.2s;
+}
+
+.SCcard .info {
+    color: #555;
+}
+
+.SCcard .info .table {
+	width: 100%;
+	display: table;
+	margin-top: 10px;
+}
+.SCcard .info .table i {
+	display: table-cell;
+}
+
+.SCcard .info .username,
+.SCcard .info .trackTitle {
+    color: #111;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+}
+
+.SCcard .info .country {
+    font-size: 0.8em;
+}
+
+.SCcard .info i:hover,
+.SCcard .info .country:hover {
+    color: #000;
+}
+
+/* =================== Soundcloud Track =================== */

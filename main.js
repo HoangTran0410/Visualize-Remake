@@ -1,17 +1,23 @@
-var VisualyzeDesign = {};
 
-// var myAudio; // biến toàn cục, lưu trữ nhạc hiện tại
+var myAudio; // biến toàn cục, lưu trữ nhạc hiện tại
 
 function setup() {
-	createCanvas(windowWidth, windowHeight).position(0, 0);
+	// createCanvas(windowWidth, windowHeight).position(0, 0);
 
-	VisualyzeDesign.myAudio = new MyAudio('http://mp3-s1-zmp3.zadn.vn/585277ff0cbbe5e5bcaa/3304886682469868040?authen=exp=1544626086~acl=/585277ff0cbbe5e5bcaa/*~hmac=9e490a682dd08d50bb96f6553bab9540');
-	VisualyzeDesign.myAudio.control(true);
+	myAudio = new MyAudio();
+	myAudio.control(true);
+
+	getLink_SoundCloud('https://soundcloud.com/jaydan-nguyen-24418349/sets/phan-manh-quynh');
+	getLink_SoundCloud('https://soundcloud.com/onionn');
+	getLink_SoundCloud('https://soundcloud.com/volethong/tri-ky-phan-manh-quynh');
+	getLink_SoundCloud('https://soundcloud.com/nguy-n-tu-n-480457176/co-mot-noi-nhu-the-phan-manh-quynh');
+	getLink_SoundCloud('https://soundcloud.com/c-h-m-957259045/con-tim-tan-vo-phan-manh-quynh');
+	
 }
 
 function draw() {
-	clear();
+	// clear();
 
-	fill(30);
-	ellipse(mouseX, mouseY, 30);
+	// fill(30);
+	// ellipse(mouseX, mouseY, 30);
 }
