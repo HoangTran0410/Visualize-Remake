@@ -1,23 +1,28 @@
-
 var myAudio; // biến toàn cục, lưu trữ nhạc hiện tại
 
 function setup() {
-	// createCanvas(windowWidth, windowHeight).position(0, 0);
+    // createCanvas(windowWidth, windowHeight).position(0, 0);
+    SC.initialize({
+        client_id: '587aa2d384f7333a886010d5f52f302a'
+    });
 
-	myAudio = new MyAudio();
-	myAudio.control(true);
+    // SC.get('/playlists/2050462').then(function(playlist) {
+    //     playlist.tracks.forEach(function(track) {
+    //         console.log(track);
+    //     });
+    // });
 
-	// getLink_SoundCloud('https://soundcloud.com/jaydan-nguyen-24418349/sets/phan-manh-quynh');
-	// getLink_SoundCloud('https://soundcloud.com/onionn');
-	// getLink_SoundCloud('https://soundcloud.com/volethong/tri-ky-phan-manh-quynh');
-	// getLink_SoundCloud('https://soundcloud.com/nguy-n-tu-n-480457176/co-mot-noi-nhu-the-phan-manh-quynh');
-	// getLink_SoundCloud('https://soundcloud.com/c-h-m-957259045/con-tim-tan-vo-phan-manh-quynh');
-	
+    // var track_url = 'https://soundcloud.com/jaydan-nguyen-24418349/sets/phan-manh-quynh';
+    // // https://soundcloud.com/nocopyrightsounds/deaf-kev-invincible-ncs-release
+
+    // SC.resolve(track_url).then(function(data){
+    // 	console.log(data);
+    // 	document.getElementById('track').innerHTML += createDivTrackSC(data)
+    // })
+
+    myAudio = new MyAudio();
+    myAudio.control(true);
 }
+``
 
-function draw() {
-	// clear();
-
-	// fill(30);
-	// ellipse(mouseX, mouseY, 30);
-}
+function draw() {}

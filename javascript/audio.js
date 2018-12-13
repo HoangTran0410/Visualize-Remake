@@ -46,6 +46,9 @@ class MyAudio {
         return this.audio.paused;
     }
 
+    src() {
+        return this.audio.elt.src;
+    }
     // ============= set ===================
     changeSrc(link) {
         this.audio.src = link;
@@ -66,6 +69,11 @@ class MyAudio {
     onEnded(func) {
         this.audio.onended(func);
     }
+}
+
+function playTrack(idTrack) {
+    myAudio.changeSrc('https://api.soundcloud.com/tracks/'+idTrack+'/stream?client_id='+idSoundCloud);
+    myAudio.autoPlay(true);
 }
 
 function prettyTime(s) {

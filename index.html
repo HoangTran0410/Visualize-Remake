@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Visualyze Remake</title>
 
-	<title>Visualyze Remake</title>
+    <!-- Load font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 
-	<!-- Load font awesome icons -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-	 crossorigin="anonymous">
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.sound.min.js"></script>
 
-	<link rel="stylesheet" href="style.css">
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.sound.min.js"></script>
-
-	<script src="javascript/audio.js"></script>
-	<script src="javascript/getlink.js"></script>
-	<script src="main.js"></script>
+    <script src="javascript/audio.js"></script>
+    <script src="javascript/getlink.js"></script>
+    <script src="javascript/action.js"></script>
+    <script src="javascript/makeDiv.js"></script>
+    <script src="main.js"></script>
 
 </head>
+
 <body>
-	<div class="SCcard-container" id="track"></div>
-	<hr>
-	<div class="SCcard-container" id="user"></div>
+    <input type="text" id="searchSCInput" placeholder="Tìm soundcloud...">
+    <button onclick="searchSC({q:document.getElementById('searchSCInput').value, limit: 20}, true)">Tìm kiếm</button>
+
+    <div class="SCcard-container" id="track"></div>
+    <hr>
+    <div class="SCcard-container" id="user"></div>
 </body>
+
 </html>
