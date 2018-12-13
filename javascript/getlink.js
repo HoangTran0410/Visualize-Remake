@@ -17,6 +17,9 @@ function getLink_SoundCloud(url) {
                     break;
 
                 case 'playlist':
+                	for(var track of data.tracks) {
+                		document.getElementById('track').innerHTML += createDivTrackSC(track);
+                	}
                     break;
             }
         },
