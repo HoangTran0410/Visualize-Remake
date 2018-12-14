@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    font: 15px/1.4 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* =================== Soundcloud List =================== */
+/* ul */
+.sc-list {
+    list-style: none;
+}
+/* li */
+.sc-list-item {
+    
+    padding: 5px 0;
+}
+
+.sc-list-item:hover .playbtn {
+    transform: scale(1);
+}
+
+.sc-list-item.active {
+    background-color: rgba(238, 238, 238, 0.849);
+}
+
+/*====== ảnh ======*/
+.sc-image {
+    position: relative;
+    display: inline-block;
+}
+.sc-image img {
+    width: 55px;
+    height: 55px;
+}
+
+/* ======= nút phát ======== */
+.playbtn {
+    transform: scale(0);
+    transition-duration: .2s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 55px;
+    text-align: center;
+    color: #ce3d38;
+    font-size: 2em;
+}
+.playbtn:hover {
+    color: #ff0800;
+}
+
+/*======== khung thông tin ========*/
+.sc-content {
+    display: inline-block;
+}
+
+/* tên */
+.sc-content .sc-username a:hover,
+.sc-content .sc-trackname a:hover {
+    text-decoration: underline;
+    overflow: hidden;
+}
+.sc-content .sc-trackname a {
+    font-size: 1.2em;
+}
+/* link của tên */
+.sc-link-light {
+    color: #aaa;
+}
+
+.sc-link-dark {
+    color: #333;
+}
+/* ul thông tin like, plays, repost, comments .... */
+.sound-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    list-style: none;
+    margin: 0;
+}
+.sound-stats-item {
+    color: #aaa;
+    font-size: 0.9em;
+    padding-right: 10px;
+}

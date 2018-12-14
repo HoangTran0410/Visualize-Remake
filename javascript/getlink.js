@@ -1,16 +1,19 @@
 var idSoundCloud = '587aa2d384f7333a886010d5f52f302a';
 
-function searchSC(dataSearch, override) {
-    if(override) document.getElementById('tracks').innerHTML = '';
+function searchSC(type, dataSearch, func) {
+    SC.get(type, dataSearch).then(function (data) {
+        func(data);
 
-    SC.get('/tracks', dataSearch).then(function (tracks) {
-        console.log(tracks);
-        for (var track of tracks) {
-            SC.get('/tracks/' + track.id).then(function (data) {
-                document.getElementById('tracks').innerHTML += createDivTrackSC(data);
-            });
-        }
     }).catch(function (error) {
+        alert('Error: ' + error.message);
+    });
+}
+
+function searchSC_url(url, func) {
+    SC.resolve(url).then(function (data) {
+        func(data);
+    })
+    .catch(function (error) {
         alert('Error: ' + error.message);
     });
 }

@@ -43,15 +43,15 @@ function swap(arr, i, j) {
 // ============== Sort Func ===================
 function getValueOfTypeInListCartMusic(cart, type) {
     switch(type) {
-        case 'title': return cart.getElementsByClassName('trackTitle')[0].innerHTML;
+        case 'title': return cart.getElementsByClassName('sc-trackname')[0].getElementsByTagName('a')[0].innerHTML;
         case 'like': return cart.getElementsByClassName('fa fa-heart')[0].title;
         case 'plays': return parseInt(cart.getElementsByClassName('fa fa-heart')[0].nextElementSibling.title.split(',').join(''));
         case 'comments': return parseInt(cart.getElementsByClassName('fa fa-comments')[0].title.split(',').join(''));
     }
 }
 
-function sortCartsMusic(container, loai) {
-	var carts = container.getElementsByClassName('SCcard');
+function sortListMusic(container, loai) {
+	var carts = container.getElementsByClassName('sc-list-item');
     quickSort(carts, 0, carts.length-1, loai, getValueOfTypeInListCartMusic);
     
     decrease = !decrease;
