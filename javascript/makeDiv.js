@@ -29,7 +29,7 @@ function createDivUserSC(dataUser) {
 	</div>`
 }
 
-function createDivTrackSC(dataTrack) {
+function createDivTrackSC2(dataTrack) {
     var id = dataTrack.id;
     var ava = dataTrack.artwork_url || `img/avatar.svg`;
     var title = dataTrack.title;
@@ -68,6 +68,53 @@ function createDivTrackSC(dataTrack) {
 	</div>`
 }
 
+function createDivTrackSC(dataTrack) {
+	var id = dataTrack.id;
+    var ava = dataTrack.artwork_url || `img/avatar.svg`;
+    var title = dataTrack.title;
+    var favo = abbreviateNumber(dataTrack.favoritings_count);
+    var plays = abbreviateNumber(dataTrack.playback_count);
+	var comments = abbreviateNumber(dataTrack.comment_count);
+	var repost = abbreviateNumber(dataTrack.reposts_count);
+	
+	var streamable = (dataTrack.streamable?`title="play" onclick="playTrack('`+id+`', this)"`:`title="This track is not streamable !" style="cursor: no-drop;"`);
+
+    return `<li class="sc-list-item">
+				<div class="sc-image">
+					<img src="`+ava+`" alt="">
+					<a class="playbtn" >
+						<i class="fa fa-play" `+streamable+`></i>
+					</a>
+				</div>
+				<div class="sc-content">
+					<div class="sc-username">
+						<a target="_blank" href="`+dataTrack.user.permalink_url+`" class="sc-link-light">`+dataTrack.user.username+`</a>
+					</div>
+					<div class="sc-trackname">
+						<a target="_blank" href="`+dataTrack.permalink_url+`" class="sc-link-dark">`+title+`</a>
+					</div>
+					<ul class="sound-stats">
+						<li class="sound-stats-item" title="`+dataTrack.playback_count.toLocaleString()+` plays">
+							<i class="fa fa-play"></i>
+							`+plays+`
+						</li>
+						<li class="sound-stats-item" title="`+dataTrack.favoritings_count.toLocaleString()+` likes">
+							<i class="fa fa-heart"></i>
+							`+favo+`
+						</li>
+						<li class="sound-stats-item" title="`+dataTrack.reposts_count.toLocaleString()+` reposts">
+							<i class="fa fa-retweet"></i>
+							`+repost+`
+						</li>
+						<li class="sound-stats-item" title="`+dataTrack.comment_count.toLocaleString()+` comments">
+							<i class="fa fa-comment"></i>
+							`+comments+`
+						</li>
+					</ul>
+				</div>
+			</li>`
+}
+
 var trackPlaying; // tag i của CartMusic hiện tại
 
 function playTrack(idTrack, playBtn) {
@@ -77,21 +124,25 @@ function playTrack(idTrack, playBtn) {
 		if(playBtn.classList == 'fa fa-play') { // phát nếu đang dừng
 			myAudio.play();
 			playBtn.classList = 'fa fa-pause';
+			playBtn.title = 'pause';
 			hightlight(playBtn, true);
 		
 		} else { // dừng nếu đang phát
 			myAudio.pause();
 			playBtn.classList = 'fa fa-play';
+			playBtn.title = 'play';
 			hightlight(playBtn, false);
 		}
 
 	} else { // bấm vào bài khác
 		if(trackPlaying) { // nếu đang có bài
 			trackPlaying.classList = 'fa fa-play'; // xóa 'playing' ở bài trước
+			trackPlaying.title = 'play';
 			hightlight(trackPlaying, false);
 		}
 
 		playBtn.classList = 'fa fa-pause'; // tạo 'playing' ở bài này
+		playBtn.title = 'pause';
 		trackPlaying = playBtn;
 		hightlight(trackPlaying, true);
 
@@ -102,7 +153,8 @@ function playTrack(idTrack, playBtn) {
 }
 
 function hightlight(iTag, trueFalse) {
-	iTag.parentElement.parentElement.parentElement.style.backgroundColor = (trueFalse?'#eee':'#fff');
+	if(trueFalse) iTag.parentElement.parentElement.parentElement.classList.add('active');
+	else iTag.parentElement.parentElement.parentElement.classList.remove('active');
 }
 
 function abbreviateNumber2(value) {
@@ -132,4 +184,40 @@ function abbreviateNumber(num, fixed) {
         d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
         e = d + ['', 'k', 'm', 'b', 't'][k]; // append power
     return e;
+}
+
+// ================= Old Code ========================
+function playTrack2(idTrack, playBtn) {
+	var streamUrl = 'https://api.soundcloud.com/tracks/'+idTrack+'/stream?client_id='+idSoundCloud;
+
+	if(trackPlaying == playBtn) { // nếu bấm vào bài đang phát
+		if(playBtn.classList == 'fa fa-play') { // phát nếu đang dừng
+			myAudio.play();
+			playBtn.classList = 'fa fa-pause';
+			hightlight2(playBtn, true);
+		
+		} else { // dừng nếu đang phát
+			myAudio.pause();
+			playBtn.classList = 'fa fa-play';
+			hightlight2(playBtn, false);
+		}
+
+	} else { // bấm vào bài khác
+		if(trackPlaying) { // nếu đang có bài
+			trackPlaying.classList = 'fa fa-play'; // xóa 'playing' ở bài trước
+			hightlight2(trackPlaying, false);
+		}
+
+		playBtn.classList = 'fa fa-pause'; // tạo 'playing' ở bài này
+		trackPlaying = playBtn;
+		hightlight2(trackPlaying, true);
+
+		myAudio.changeSrc(streamUrl);
+		myAudio.autoPlay(true);
+		myAudio.loop(true);
+	}
+}
+
+function hightlight2(iTag, trueFalse) {
+	iTag.parentElement.parentElement.parentElement.style.backgroundColor = (trueFalse?'#eee':'#fff');
 }
