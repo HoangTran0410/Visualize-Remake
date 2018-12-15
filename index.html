@@ -10,7 +10,7 @@
     <!-- Load font awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <script src="https://connect.soundcloud.com/sdk/sdk-3.3.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
@@ -20,16 +20,53 @@
     <script src="javascript/audio.js"></script>
     <script src="javascript/getlink.js"></script>
     <script src="javascript/action.js"></script>
-    <script src="javascript/makeDiv2.js"></script>
+    <script src="javascript/makeDiv.js"></script>
     <script src="main.js"></script>
 
 </head>
 
 <body>
-    <input type="text" id="searchSCInput" placeholder="Tìm soundcloud...">
-    <button onclick="searchSC('/tracks', {q:document.getElementById('searchSCInput').value, limit: 10, linked_partitioning:1}, function(data){console.log(data)})">Tìm kiếm</button>
+    <div class="sidenav-container">
+        <div id="mySidenav" class="sidenav">
 
-    <table class="sc-list" id="tracks"></table>
+            <div class="collapsible"><i class="fa fa-music"></i> Audio</div>
+            <div class="collapsible-content">
+                <div class="collapsible"> <i class="fa fa-search"></i> Search Online</div>
+                <div class="collapsible-content">
+                    Nothing yet!
+                </div>
+                <div class="collapsible"> <i class="fa fa-list"></i> Playlist</div>
+                <div class="collapsible-content"  id="tracks">
+                    Nothing yet!
+                </div>
+                <div class="collapsible"> <i class="fa fa-trash"></i> Recycle Bin</div>
+                <div class="collapsible-content">
+                    Nothing yet!
+                </div>
+            </div>
+
+            <div class="collapsible"> <i class="fa fa-question"></i> Help</div>
+            <div class="collapsible-content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, quod deserunt tempore laudantium
+                aliquid quo omnis eos quibusdam ea doloribus labore, explicabo ducimus? Earum totam molestiae ad
+                animi facere dolores.
+            </div> <!-- End help -->
+
+            <div class="collapsible"> <i class="fa fa-user"></i> About Me</div>
+            <div class="collapsible-content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus at quidem nam harum, eligendi
+                hic ad laudantium? Rerum, ab commodi minus, inventore voluptate excepturi, id et facilis eaque
+                animi nemo?
+            </div> <!-- End about -->
+        </div>
+        <div class="menu-icon-container" onclick="menuicon_click(this)">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </div>
+
+    <div id="snackbar">Some text some message..</div>
 
 </body>
 

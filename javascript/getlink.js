@@ -1,5 +1,3 @@
-var idSoundCloud = '587aa2d384f7333a886010d5f52f302a';
-
 function searchSC(type, dataSearch, func) {
     SC.get(type, dataSearch).then(function (data) {
         func(data);
@@ -16,6 +14,13 @@ function searchSC_url(url, func) {
     .catch(function (error) {
         alert('Error: ' + error.message);
     });
+}
+
+function addTrack(data) {
+    var div = document.getElementById('tracks');
+    for(var track of data.collection) {
+        div.innerHTML += `<p>`+track.title+`</p>`;
+    }
 }
 
 // ======================== Zing Mp3 ================================

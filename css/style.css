@@ -1,94 +1,235 @@
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font: 15px/1.4 "Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
+/* ================================= Loader =============================== */
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #474747;
+    border-bottom: 5px solid #474747;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
 }
 
-/* =================== Soundcloud List =================== */
-/* ul */
-.sc-list {
-    list-style: none;
-}
-/* li */
-.sc-list-item {
-    
-    padding: 5px 0;
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-.sc-list-item:hover .playbtn {
-    transform: scale(1);
-}
-
-.sc-list-item.active {
-    background-color: rgba(238, 238, 238, 0.849);
-}
-
-/*====== ảnh ======*/
-.sc-image {
-    position: relative;
-    display: inline-block;
-}
-.sc-image img {
-    width: 55px;
-    height: 55px;
-}
-
-/* ======= nút phát ======== */
-.playbtn {
-    transform: scale(0);
-    transition-duration: .2s;
-    position: absolute;
+/*========================== The side navigation menu =========================*/
+.sidenav-container {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
-    width: 100%;
+    background-color: #333;
+}
+
+.sidenav {
     height: 100%;
-    line-height: 55px;
-    text-align: center;
-    color: #ce3d38;
-    font-size: 2em;
-}
-.playbtn:hover {
-    color: #ff0800;
+    width: 0;
+    overflow-x: hidden;
+    /* padding-top: 60px; */
+    transition: 0.5s;
 }
 
-/*======== khung thông tin ========*/
-.sc-content {
-    display: inline-block;
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
 
-/* tên */
-.sc-content .sc-username a:hover,
-.sc-content .sc-trackname a:hover {
-    text-decoration: underline;
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/*=========================== menu icon =======================*/
+.sidenav-container .menu-icon-container {
+    position: absolute;
+    top: 0px;
+    right: -40px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.menu-icon-container .bar {
+    width: 35px;
+    height: 5px;
+    background-color: #111111;
+    border: 1px solid #777;
+    margin: 6px 0;
+    transition: 0.3s;
+}
+
+.menu-icon-container.active:hover .bar {
+    border-color: #ff0000;
+    background-color: #ff0000
+}
+
+.menu-icon-container:hover .bar {
+    border-color: #000;
+    background-color: #fff;
+}
+
+.menu-icon-container.active .bar:nth-child(1) {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.menu-icon-container.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-icon-container.active .bar:nth-child(3) {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+
+/*=============================== Collapsible ==========================*/
+.collapsible {
+    background-color: #777;
+    color: #dddddd;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.collapsible.active,
+.collapsible:hover {
+    color: #fff;
+    background-color: #555;
+}
+
+.collapsible.active {
+    background-color: #444;
+}
+
+.collapsible-content {
+    padding-left: 10px;
+    max-height: 0;
     overflow: hidden;
-}
-.sc-content .sc-trackname a {
-    font-size: 1.2em;
-}
-/* link của tên */
-.sc-link-light {
-    color: #aaa;
+    transition: max-height 0.5s;
+    background-color: #f1f1f1;
 }
 
-.sc-link-dark {
-    color: #333;
+.collapsible:after {
+    content: '\02795';
+    /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: white;
+    float: right;
+    margin-left: 5px;
 }
-/* ul thông tin like, plays, repost, comments .... */
-.sound-stats {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    list-style: none;
-    margin: 0;
+
+.collapsible.active:after {
+    content: "\2796";
+    /* Unicode character for "minus" sign (-) */
 }
-.sound-stats-item {
-    color: #aaa;
-    font-size: 0.9em;
-    padding-right: 10px;
+
+/*========================= Snack bar ============================ */
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden;
+    /* Hidden by default. Visible on click */
+    min-width: 250px;
+    /* Set a default minimum width */
+    margin-left: -125px;
+    /* Divide value of min-width by 2 */
+    background-color: #333;
+    /* Black background color */
+    color: #fff;
+    /* White text color */
+    text-align: center;
+    /* Centered text */
+    border-radius: 5px;
+    /* Rounded borders */
+    padding: 16px;
+    /* Padding */
+    position: fixed;
+    /* Sit on top of the screen */
+    z-index: 1;
+    /* Add a z-index if needed */
+    left: 50%;
+    /* Center the snackbar */
+    bottom: 30px;
+    /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible;
+    /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
 }
