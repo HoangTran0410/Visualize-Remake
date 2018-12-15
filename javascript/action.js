@@ -11,7 +11,7 @@ function menuicon_click(x) {
 
 //============= Off canvas menu ===============
 function openNav() {
-    document.getElementById("mySidenav").style.width = "500px";
+    document.getElementById("mySidenav").style.width = "600px";
 }
 
 function closeNav() {
@@ -48,18 +48,27 @@ function addEventCollapsible() {
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
             } else {
-                // mở content
-                content.style.maxHeight = content.scrollHeight + "px";
-
-                // mở rộng tất cả parents của content
-                while(content.parentElement.classList.contains('collapsible-content')) {
-                    var childScroll = content.scrollHeight;
-                    content = content.parentElement;
-                    content.style.maxHeight = content.scrollHeight + childScroll + "px";
-                }
+                openCollapse(content);
             }
         });
     }
+}
+function openCollapse(ele) {
+    // mở ele
+    ele.style.maxHeight = ele.scrollHeight + "px";
+
+    // mở rộng tất cả parents của ele
+    while(ele.parentElement.classList.contains('collapsible-content')) {
+        var childScroll = ele.scrollHeight;
+        ele = ele.parentElement;
+        ele.style.maxHeight = ele.scrollHeight + childScroll + "px";
+    }
+}
+
+// =========================== Play link =======================
+function playUrl(url) {
+    myAudio.changeSrc(url);
+    myAudio.play();
 }
 
 // ================== Sort ====================

@@ -28,24 +28,65 @@
 <body>
     <div class="sidenav-container">
         <div id="mySidenav" class="sidenav">
-
+            <h2 style="text-align: center; padding: 5px; color: #efefef" >Visualyze Remake</h2>
             <div class="collapsible"><i class="fa fa-music"></i> Audio</div>
             <div class="collapsible-content">
-                <div class="collapsible"> <i class="fa fa-search"></i> Search Online</div>
+
+                <div class="collapsible"><i class="fa fa-gamepad"></i> Controls</div>
                 <div class="collapsible-content">
                     Nothing yet!
-                </div>
+                </div> <!-- End Controls -->
+
+                <div class="collapsible"> <i class="fa fa-search"></i> Search Online</div>
+                <div class="collapsible-content">
+                    <div class="type-search">
+
+                        <div onclick="">Top</div>
+                        <div onclick="">New & Hot</div>
+
+                        <div>
+                            <select name="" id="">
+                                <script>
+                                    var types = "All|Alternative Rock|Ambient|Classical|Country|Dance & EDM|Dancehall|Deep House|Disco|Drum &amp; Bass|Dubstep|Electronic|Folk &amp; Singer-Songwriter|Hip-hop &amp; Rap|House|Indie|Jazz &amp; Blues|Latin|Metal|Piano|Pop|R&amp;B &amp; Soul|Reggae|Reggaeton|Rock|Soundtrack|Techno|Trance|Trap|Triphop|World "
+                                    var arr_types = types.split('|');
+                                    for(var type of arr_types) {
+                                        document.writeln(`<option value="`+type.split('&amp').join('&')+`">`+type+`</option>`)
+                                    }
+                                </script>
+                            </select>
+                        </div>
+                    </div> <!-- End Type search -->
+
+                    <div class="search-container">
+                        <input type="text" placeholder="Search SoundCloud.." name="search" autocomplete="off">
+                        <button type="submit" onclick="searchBtn(this, '/tracks', 1, true)"><i class="fa fa-search"></i></button>
+                    </div> <!-- End search -->
+
+                    <div class="result-search">
+                        
+                    </div> <!-- End Result -->
+
+                    <div class="loader" style="display: none"></div>
+
+                    <div class="more">
+                        <button onclick="getMore(this, '/tracks')">More Result</button>
+                    </div> <!-- End more -->
+                </div> <!-- End search -->
+
                 <div class="collapsible"> <i class="fa fa-list"></i> Playlist</div>
-                <div class="collapsible-content"  id="tracks">
+                <div class="collapsible-content" id="tracks">
                     Nothing yet!
-                </div>
+                </div> <!-- End Playlist -->
+
+
                 <div class="collapsible"> <i class="fa fa-trash"></i> Recycle Bin</div>
                 <div class="collapsible-content">
                     Nothing yet!
-                </div>
+                </div> <!-- End Recycle Bin -->
+
             </div>
 
-            <div class="collapsible"> <i class="fa fa-question"></i> Help</div>
+            <div class="collapsible"> <i class="fa fa-question-circle"></i> Help</div>
             <div class="collapsible-content">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, quod deserunt tempore laudantium
                 aliquid quo omnis eos quibusdam ea doloribus labore, explicabo ducimus? Earum totam molestiae ad
