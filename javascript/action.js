@@ -11,7 +11,7 @@ function menuicon_click(x) {
 
 //============= Off canvas menu ===============
 function openNav() {
-    document.getElementById("mySidenav").style.width = (windowWidth<700?((windowWidth-50) + 'px'):"700px");
+    document.getElementById("mySidenav").style.width = (windowWidth<700?(windowWidth + 'px'):"700px");
 }
 
 function closeNav() {
@@ -80,7 +80,7 @@ function playBtn(btn, url) {
     if(iTag.classList == 'fa fa-pause') {
         iTag.classList = 'fa fa-play';
         btn.parentElement.parentElement.classList.toggle('active');
-        
+
         myAudio.pause();
 
     } else {

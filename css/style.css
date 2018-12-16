@@ -481,3 +481,13 @@ a {
 ::-webkit-scrollbar-thumb:hover {
     background: #bbb;
 }
+
+@media only screen and (max-width: 700px) {
+    .sidenav-container .menu-icon-container.active {
+        position: absolute;
+        top: 0px;
+        right: 5px;
+        cursor: pointer;
+        z-index: 3;
+    }
+}
