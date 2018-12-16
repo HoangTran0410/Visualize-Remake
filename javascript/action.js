@@ -11,7 +11,7 @@ function menuicon_click(x) {
 
 //============= Off canvas menu ===============
 function openNav() {
-    document.getElementById("mySidenav").style.width = "600px";
+    document.getElementById("mySidenav").style.width = (windowWidth<700?((windowWidth-50) + 'px'):"700px");
 }
 
 function closeNav() {
@@ -66,9 +66,33 @@ function openCollapse(ele) {
 }
 
 // =========================== Play link =======================
-function playUrl(url) {
-    myAudio.changeSrc(url);
-    myAudio.play();
+function clearPlay() {
+    for(var div of list_searched) {
+        if(div.classList.contains('active')) {
+            div.classList.remove('active');
+            div.getElementsByClassName('track-play')[0].getElementsByTagName('i')[0].classList = 'fa fa-play';
+        }
+    }
+}
+function playBtn(btn, url) {
+    var iTag = btn.getElementsByTagName('i')[0];
+
+    if(iTag.classList == 'fa fa-pause') {
+        iTag.classList = 'fa fa-play';
+        btn.parentElement.parentElement.classList.toggle('active');
+        
+        myAudio.pause();
+
+    } else {
+        clearPlay();
+
+        iTag.classList = 'fa fa-pause';
+        btn.parentElement.parentElement.classList.toggle('active');
+    
+        myAudio.changeSrc(url);
+        myAudio.play();
+    }
+    
 }
 
 // ================== Sort ====================
