@@ -1,7 +1,7 @@
 class MyAudio {
     constructor(link) {
         this.audio = createAudio(link);
-        // this.audio.connect(p5.soundOut);
+        this.audio.connect(p5.soundOut);
     }
 
     play() {
